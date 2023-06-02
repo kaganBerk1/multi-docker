@@ -1,0 +1,15 @@
+sudo: required
+services: 
+  - docker
+
+before_install:
+  - docker build -t kaganberk/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run  -e CI=true kaganberk/react-test npm test 
+
+after_success:
+  - docker build -t kaganberk/multi-client ./client
+  - docker build -t kaganberk/multi-nginx ./nginx
+  - docker build -t kaganberk/multi-server ./server
+  - docker build -t kaganberk/multi-worker ./worker
