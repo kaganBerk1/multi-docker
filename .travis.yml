@@ -15,7 +15,7 @@ after_success:
   - docker build -t kaganberk/multi-worker ./worker
  # log in docker
   - echo "$DOCKER_PASSWORD" | docker login -u kaganberk --password-stdin
-  #take those images and push tehm to docker hub
+ # take those images and push tehm to docker hub
   - docker push kaganberk/multi-client
   - docker push kaganberk/multi-nginx
   - docker push kaganberk/multi-server
